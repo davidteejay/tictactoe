@@ -62,22 +62,17 @@
         $(function(){
             var pick = "X";
             var myArr = ["0","0","0","0","0","0","0","0","0"];
-            if (!myArr.includes("0")){
-                alert('Draw');
-                window.location = "index.html";
-            }
             var chArr = [3,4,6,7]
             $('.cell').click(function(){
                 var elem = $(this).text();
                 if (elem == "X" || elem == "O"){
                     alert('Cell already filled');
                 } else {
-                    if (pick == "O"){pick = "X"} else if (pick == "X"){pick ="O"}
-                    
                     var currentId = $(this).attr('id');
                     currentId = parseInt(currentId.replace('div', ''), 10);
                     myArr[currentId] = pick;
                     $(this).text(pick);
+                    if (pick == "O"){pick = "X"} else if (pick == "X"){pick ="O"}
                     for (var i=0;i<myArr.length;i++){
                         if (myArr[i] == "X" || myArr[i] == "O"){
                             if(myArr[i] == myArr[i-1] && myArr[i-1] == myArr[i-2] && !chArr.includes(i)){
@@ -96,6 +91,10 @@
                         } else {
                             //do nothing
                         }
+                    }
+                    if (!myArr.includes("0")){
+                        alert('Draw');
+                        window.location = "index.html";
                     }
                 }
             })
